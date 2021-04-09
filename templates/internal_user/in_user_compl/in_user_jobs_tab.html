@@ -1,0 +1,26 @@
+<div class="tab-pane fade" id="in_user_jobs-tab" role="tabpanel" aria-labelledby="pills-franchise_jobs-tab">
+    <div class="card-body">
+        <div class="row">
+
+            {% for item in assined_jobs %}
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                <div class="card bg-info text-white w-100">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <div>
+                                <h6 class="font-medium mb-2">
+                                    <a href="{% url 'job_details' item.job.id %}"
+                                        style="text-decoration: none; color: white;">{{item.job.job_title}}</a>
+                                </h6>
+                                <small class="">{{item.job.client.client_name}}</small>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

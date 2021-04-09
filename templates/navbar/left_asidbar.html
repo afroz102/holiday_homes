@@ -1,0 +1,155 @@
+{% load static %}
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="/" aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="fas fa-users"></i>
+                        <span class="hide-menu">Landlords</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark" href="{% url 'get_all_landlord' %}"
+                                aria-expanded="false">
+                                <i class="fas fa-users"></i>
+                                <span class="hide-menu">Landlord List</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{% url 'add_landlord' %}" class="sidebar-link">
+                                <i class="mdi mdi-account-plus"></i>
+                                <span class="hide-menu">Add a New Landlord</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="mdi mdi-home-modern"></i>
+                        <span class="hide-menu">Units</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)"
+                                aria-expanded="false">
+                                <i class="mdi mdi-home-modern"></i>
+                                <span class="hide-menu">Unit List</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="javascript:void(0)" class="sidebar-link">
+                                <i class="mdi mdi-home-variant"></i>
+                                <span class="hide-menu">Add a New Unit</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="mdi mdi-book-open"></i>
+                        <span class="hide-menu">Bookings</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)"
+                                aria-expanded="false">
+                                <i class="mdi mdi-book-open"></i>
+                                <span class="hide-menu">Bookings</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="javascript:void(0)" class="sidebar-link">
+                                <i class="mdi mdi-book-plus"></i>
+                                <span class="hide-menu">Add a New Booking</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="fas fa-tasks"></i>
+                        <span class="hide-menu">Tasks</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark" href="{#% url 'get_all_internaluser' %}"
+                                aria-expanded="false">
+                                <i class="fas fa-tasks"></i>
+                                <span class="hide-menu">Tasks</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="javascript:void(0)" class="sidebar-link">
+                                <i class="far fa-plus-square"></i>
+                                <span class="hide-menu">Add a New Task</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-file-multiple"></i>
+                        <span class="hide-menu">Reports</span>
+                    </a>
+                </li>
+
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="mdi mdi-account-multiple"></i>
+                        <span class="hide-menu">Users</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark" href="{% url 'get_all_user' %}"
+                                aria-expanded="false">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu">Users</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="javascript:void(0)" class="sidebar-link">
+                                <i class="mdi mdi-account-plus"></i>
+                                <span class="hide-menu">Add a New User</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-settings"></i>
+                        <span class="hide-menu">Settings</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

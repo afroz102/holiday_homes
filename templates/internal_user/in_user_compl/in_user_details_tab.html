@@ -1,0 +1,250 @@
+{% load static %}
+
+<div class="tab-pane fade show active" id="in_user_details-tab" role="tabpanel"
+    aria-labelledby="pills-in_user_details-tab">
+    <div class="card-body py-0">
+
+        <!-- job details card row -->
+        <div class="row">
+            <div class="col mx-auto pb-0">
+                <div class="card w-100 pb-0 mb-0">
+                    <div class="card-body">
+                        <center>
+                            <h2 class="card-title">Bank Details</h2>
+                        </center>
+
+                        <div>
+                            <hr>
+                        </div>
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>Bank Name</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.bank_name}}</p>
+                                </div>
+
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>Bank Account Number</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.bank_account_details}}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>IFSC Code</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.ifsc_code}}</p>
+                                </div>
+
+                                <div class="col-md-3 col-xs-6">
+                                    <strong>Branch Name</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.branch_name}}</p>
+                                </div>
+
+                                <div class="col-4 mt-2 mx-auto">
+                                    <button class="btn btn-rounded btn-outline-warning" data-toggle="modal"
+                                        data-target="#update_user_bank_details">
+                                        <i class="fas fa-edit"></i>Update Bank Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <center class="mt-4">
+                            <h2 class="card-title">Tax/Licence Details</h2>
+                        </center>
+
+                        <div>
+                            <hr>
+                        </div>
+
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>PF/ESI</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.pf_or_esi}}</p>
+                                </div>
+
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>Trade Licence</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.trade_licence_num}}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>PAN</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.pan}}</p>
+                                </div>
+
+                                <div class="col-md-3 col-xs-6">
+                                    <strong>TAN</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.tan}}</p>
+                                </div>
+
+                                <div class="col-md-3 col-xs-6">
+                                    <strong>GST</strong>
+                                    <br>
+                                    <p class="text-muted">{{userProfileDetails.gst}}</p>
+                                </div>
+
+                                <div class="col-4 mt-2 mx-auto">
+                                    <button class="btn btn-rounded btn-outline-warning" data-toggle="modal"
+                                        data-target="#update_user_tax_details">
+                                        <i class="fas fa-edit"></i>Update Tax Details
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update user Bank Details button modal content -->
+<div id="update_user_bank_details" class="modal bs-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="vcenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center bg-dark text-white">
+                <h3 class="modal-title font-weight-bold" id="vcenter"> Update user Bank Details</h3>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'update_user_bank_details' userProfileDetails.id %}" method="post"
+                    class="form-horizontal form-material">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="id_ifsc_code" class="col-md-12">IFSC Code</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="ifsc_code"
+                                    value="{{userProfileDetails.ifsc_code}}" maxlength="250" id="id_ifsc_code">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="id_bank_name" class="col-md-12">Bank Name</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="bank_name"
+                                    value="{{userProfileDetails.bank_name}}" maxlength="250" id="id_bank_name">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_branch_name" class="col-md-12">Branch Name</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="branch_name"
+                                    value="{{userProfileDetails.branch_name}}" maxlength="250" id="id_branch_name">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_bank_account_details" class="col-md-12">Bank Account Details</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="bank_account_details"
+                                    value="{{userProfileDetails.bank_account_details}}" maxlength="250"
+                                    id="id_bank_account_details">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4 form-group d-flex justify-content-around text-center">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-warning waves-effect"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-success waves-effect">
+                                <i class="mdi mdi-account-edit"></i>
+                                <span> Update </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal content -->
+
+
+<!-- Update user Tax Details button modal content -->
+<div id="update_user_tax_details" class="modal bs-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="vcenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center bg-dark text-white">
+                <h3 class="modal-title font-weight-bold" id="vcenter"> Update user Tax Details</h3>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'update_user_tax_details' userProfileDetails.id %}" method="post"
+                    class="form-horizontal form-material">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="id_pf_or_esi" class="col-md-12">PF/ESI</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="pf_or_esi"
+                                    value="{{userProfileDetails.pf_or_esi}}" maxlength="250" id="id_pf_or_esi">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="id_trade_licence_num" class="col-md-12">Trade Licence</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="trade_licence_num"
+                                    value="{{userProfileDetails.trade_licence_num}}" maxlength="250"
+                                    id="id_trade_licence_num">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="id_pan" class="col-md-12">PAN</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="pan" value="{{userProfileDetails.pan}}"
+                                    maxlength="250" id="id_pan">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_tan" class="col-md-12">TAN</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="tan" value="{{userProfileDetails.tan}}"
+                                    maxlength="250" id="id_tan">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_gst" class="col-md-12">GST</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="gst" value="{{userProfileDetails.gst}}"
+                                    maxlength="250" id="id_gst">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4 form-group d-flex justify-content-around text-center">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-warning waves-effect"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-success waves-effect">
+                                <i class="mdi mdi-account-edit"></i>
+                                <span> Update </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal content -->
