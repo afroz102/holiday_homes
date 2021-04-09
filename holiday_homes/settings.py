@@ -30,8 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'bookings',
     'home',
     'landlords',
+    'units',
     'users',
 
     'debug_toolbar',

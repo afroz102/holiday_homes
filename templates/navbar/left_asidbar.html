@@ -44,14 +44,14 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)"
+                            <a class="sidebar-link waves-effect waves-dark" href="{% url 'get_all_unit' %}"
                                 aria-expanded="false">
                                 <i class="mdi mdi-home-modern"></i>
                                 <span class="hide-menu">Unit List</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="javascript:void(0)" class="sidebar-link">
+                            <a href="{% url 'add_unit' %}" class="sidebar-link">
                                 <i class="mdi mdi-home-variant"></i>
                                 <span class="hide-menu">Add a New Unit</span>
                             </a>
@@ -68,14 +68,14 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)"
+                            <a class="sidebar-link waves-effect waves-dark" href="{% url 'get_all_booking' %}"
                                 aria-expanded="false">
                                 <i class="mdi mdi-book-open"></i>
                                 <span class="hide-menu">Bookings</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="javascript:void(0)" class="sidebar-link">
+                            <a href="{% url 'add_booking' %}" class="sidebar-link">
                                 <i class="mdi mdi-book-plus"></i>
                                 <span class="hide-menu">Add a New Booking</span>
                             </a>

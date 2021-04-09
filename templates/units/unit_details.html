@@ -1,0 +1,367 @@
+{% extends 'home.html'%}
+{% load static %}
+
+{% block title %}
+<title>{{unit.unit_name}}</title>
+{% endblock title %}
+
+
+{% block breadcrumb_heading %}
+{{unit.unit_name}}
+{% endblock breadcrumb_heading %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="/units/">Units</a>
+</li>
+<li class="breadcrumb-item">
+    <a href="#">{{unit.unit_name}}</a>
+</li>
+{% endblock breadcrumb %}
+
+
+
+{% block page_content %}
+
+<div class="row">
+    <!--Left Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <center class="mt-4">
+                    <h4 class="card-title mt-2">{{unit.unit_name}}</h4>
+                    <h6 class="card-subtitle">{{unit.landlord.name}}</h6>
+                </center>
+            </div>
+            <div>
+                <hr>
+            </div>
+
+            <div class="card-body">
+
+                <small class="text-muted">
+                    <i class="mdi mdi-email"></i>
+                    <span> Email address </span>
+                </small>
+                <h6>{{landlord.email}}</h6>
+
+                <small class="text-muted pt-4 db">
+                    <i class="mdi mdi-cellphone-basic"></i>
+                    <span>Phone</span>
+                </small>
+                <h6>{{landlord.phone}}</h6>
+
+                <small class="text-muted pt-4 db">
+                    <i class="mdi mdi-google-maps"></i>
+                    <span>Local Adress</span>
+                </small>
+                <h6>{{landlord.local_address}}, {{landlord.local_city}}, {{landlord.local_country}}</h6>
+
+
+                <small class="text-muted pt-4 db">
+                    <i class="mdi mdi-google-maps"></i>
+                    <span>Native Adress</span>
+                </small>
+                <h6>{{landlord.native_address}}, {{landlord.native_city}}, {{landlord.native_country}}</h6>
+
+
+
+                <small class="text-muted pt-4 db">
+                    <i class="mdi mdi-cellphone-basic"></i>
+                    <span>Bank Name</span>
+                </small>
+                <h6>{{landlord.bank_name}} </h6>
+
+                <small class="text-muted pt-4 db">
+                    <i class="mdi mdi-cellphone-basic"></i>
+                    <span>Branch Name</span>
+                </small>
+                <h6>{{landlord.branch_name}}</h6>
+
+
+                <small class="text-muted pt-4 db">
+                    <i class="mdi mdi-google-maps"></i>
+                    <span> Account Details</span>
+                </small>
+                <h6>{{landlord.bank_account_details}}</h6>
+
+                <small class="text-muted pt-4 db">
+                    <i class="mdi mdi-google-maps"></i>
+                    <span> IFSC Code</span>
+                </small>
+                <h6>{{landlord.ifsc_code}}</h6>
+            </div>
+
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-lg col-md">
+                        <button class="btn btn-rounded btn-outline-warning float-left" data-toggle="modal"
+                            data-target="#verticalcenter_delete_unit">
+                            <i class="fas fa-edit"></i>Update
+                        </button>
+                    </div>
+
+                    <div class="col-lg col-md">
+                        <button class="btn btn-rounded btn-outline-danger float-right" data-toggle="modal"
+                            data-target="#verticalcenter_delete_unit">
+                            <i class="mdi mdi-delete-forever"></i>Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Left Column -->
+
+    <!-- Right Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <!-- Tabs -->
+            <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-unit_notes-tab" data-toggle="pill" href="#unit_notes-tab"
+                        role="tab" aria-controls="pills-unit_notes" aria-selected="true">
+                        <i class="mdi mdi-note-text"></i>
+                        <span> Notes </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-unit_documents-tab" data-toggle="pill" href="#unit_documents-tab"
+                        role="tab" aria-controls="pills-unit_documents" aria-selected="false"><i
+                            class="mdi mdi-file-multiple"></i>
+                        <span>Documents</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#payments-tab" role="tab"
+                        aria-controls="pills-setting" aria-selected="false">
+                        <i class="far fa-money-bill-alt"></i>
+                        <span>Payments</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-client_log-tab" data-toggle="pill" href="#client_log-tab" role="tab"
+                        aria-controls="pills-franchise_report" aria-selected="false">
+                        <i class="mdi mdi-account-card-details"></i>
+                        <span>Log</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Tabs -->
+            <div class="tab-content" id="pills-tabContent">
+                <!-- Notes Tab -->
+                {% include 'units/unit_details_compl/note_tab.html' %}
+
+                <!-- Document Tab -->
+                <!-- {#% include 'units/unit_details_compl/document_tab.html' %} -->
+
+                <!-- Company Contact Tab -->
+                <!-- {#% include 'clients/client_compl/client_details_contact_tab.html' %} -->
+
+
+                <!-- payments/ Profile Update tab -->
+                <!-- {#% include 'clients/client_compl/client_details_payment_tab.html' %} -->
+
+                <!-- Report  Tab-->
+                <!-- {#% include 'clients/client_compl/client_details_log_tab.html' %} -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+
+
+
+
+
+
+
+
+<!-- Delete Unit button modal content -->
+<div id="verticalcenter_delete_unit" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3 class="modal-title font-weight-bold" id="vcenter" style="color: rgb(207, 33, 33);">
+                    Warning!!</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Are you sure, you want to delete the Unit <strong><i> "{{unit.unit_name}}" </i></strong>?
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning waves-effect float-left"
+                    data-dismiss="modal">Cancel</button>
+
+                <form action="{% url 'delete_unit' unit.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger waves-effect float-right">Confirm</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal content -->
+
+
+
+
+<!-- Update Unit Details button modal content -->
+<div id="verticalcenter_delete_unit" class="modal bs-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center bg-dark text-white">
+                <h3 class="modal-title font-weight-bold" id="vcenter"> Update Client Details</h3>
+                <button type="button" class="close text-warning" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" class="form-horizontal form-material">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label for="id_landlord" class="col-md-12">Landlord</label>
+                            <div class="col-md-12">
+                                {{form.landlord}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label for="id_unit_name" class="col-md-12">Name</label>
+                            <div class="col-md-12">
+                                {{form.unit_name}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="col-md-12" for="id_phone">Phone</label>
+                            <div class="col-md-12">
+                                {{form.phone}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label for="id_local_address" class="col-md-12">Local Address</label>
+                            <div class="col-md-12">
+                                {{form.local_address}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label for="id_local_city" class="col-md-12">Local City</label>
+                            <div class="col-md-12">
+                                {{form.local_city}}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label for="id_local_country" class="col-md-12">Local Country</label>
+                            <div class="col-md-12">
+                                {{form.local_country}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label for="id_native_address" class="col-md-12">Native Address</label>
+                            <div class="col-md-12">
+                                {{form.native_address}}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="col-md-12" for="id_native_city">Native City</label>
+                            <div class="col-md-12">
+                                {{form.native_city}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="col-md-12" for="id_native_country">Native Country</label>
+                            <div class="col-md-12">
+                                {{form.native_country}}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="col-sm-12" for="id_bank_name">Bank Name</label>
+                            <div class="col-md-12">
+                                {{form.bank_name}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="col-sm-12" for="id_branch_name">Branch Name</label>
+                            <div class="col-md-12">
+                                {{form.branch_name}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="col-sm-12" for="id_bank_account_details">Account Details</label>
+                            <div class="col-md-12">
+                                {{form.bank_account_details}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="col-sm-12" for="id_ifsc_code">IFSC_Code</label>
+                            <div class="col-md-12">
+                                {{form.ifsc_code}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- footer submit button -->
+                    <div class="form-group d-flex justify-content-around text-center">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-warning waves-effect"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-success waves-effect">
+                                <i class="mdi mdi-account-edit"></i>
+                                <span> Update Profile </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+            </div> -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+{% endblock page_content %}
+
+{% block custom_js %}
+<script>
+    document.getElementById('id_landlord').classList.add('form-control');
+    document.getElementById('id_unit_name').classList.add('form-control');
+    // document.getElementById('id_phone').classList.add('form-control');
+    // document.getElementById('id_local_address').classList.add('form-control');
+    // document.getElementById('id_local_city').classList.add('form-control');
+    // document.getElementById('id_local_country').classList.add('form-control');
+    // document.getElementById('id_native_address').classList.add('form-control');
+    // document.getElementById('id_native_city').classList.add('form-control');
+    // document.getElementById('id_native_country').classList.add('form-control');
+    // document.getElementById('id_bank_name').classList.add('form-control');
+    // document.getElementById('id_branch_name').classList.add('form-control');
+    // document.getElementById('id_bank_account_details').classList.add('form-control');
+    // document.getElementById('id_ifsc_code').classList.add('form-control');
+</script>
+{% endblock custom_js %}

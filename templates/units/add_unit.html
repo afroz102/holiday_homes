@@ -2,17 +2,17 @@
 {% load static %}
 
 {% block title %}
-<title>Client</title>
+<title>Add Unit</title>
 {% endblock title %}
 
 
 {% block breadcrumb_heading %}
-Add Client
+Add Unit
 {% endblock breadcrumb_heading %}
 
 {% block breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="#">Add Client</a>
+    <a href="#">Add Unit</a>
 </li>
 {% endblock breadcrumb %}
 
@@ -70,112 +70,94 @@ Add Client
     </div>
     <!-- /.modal content -->
 </div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header bg-info">
-                <h4 class="mb-0 text-white">Add a New Landlord</h4>
+                <h4 class="mb-0 text-white">Add a New Unit</h4>
             </div>
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="card-body">
-                    <h4 class="card-title mb-0">Landlord Info</h4>
+                    <h4 class="card-title mb-0 text-center">Unit Info</h4>
                 </div>
 
                 <div class="form-body">
-                    <div class="card-body bg-light">
+                    <div class="card-body pt-0 bg-light">
                         <div class="row pt-3 m-2">
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label class="control-label" for="id_name">Landlord Name</label>
-                                    {{form.name}}
+                                    <label class="control-label" for="id_landlord">Landlord</label>
+                                    {{form.landlord}}
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label class="control-label" for="id_email">Email</label>
-                                    {{form.email}}
+                                    <label class="control-label" for="id_unit_name">Unit Name</label>
+                                    {{form.unit_name}}
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label class="control-label" for="id_phone">Phone</label>
-                                    {{form.phone}}
+                                    <label class="control-label" for="id_q1">Question 1</label>
+                                    {{form.q1}}
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label class="control-label" for="id_local_address">Local Address</label>
-                                    {{form.local_address}}
+                                    <label class="control-label" for="id_q2">Question 2</label>
+                                    {{form.q2}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_q3">Question 3</label>
+                                    {{form.q3}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_q4">Question 4</label>
+                                    {{form.q4}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_q5">Question 5</label>
+                                    {{form.q5}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_q6">Question 6</label>
+                                    {{form.q6}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_q7">Question 7</label>
+                                    {{form.q7}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_q8">Question 8</label>
+                                    {{form.q8}}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_q8">Question 9</label>
+                                    {{form.q9}}
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_local_city">Local City</label>
-                                    {{form.local_city}}
-                                </div>
-                            </div>
 
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_local_country">Local Country</label>
-                                    {{form.local_country}}
-                                </div>
-                            </div>
 
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_native_address">Native Address</label>
-                                    {{form.native_address}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_native_city">Native City</label>
-                                    {{form.native_city}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_native_country">Native Country</label>
-                                    {{form.native_country}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_bank_name">Bank Name</label>
-                                    {{form.bank_name}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_branch_name">Branch Name</label>
-                                    {{form.branch_name}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_bank_account_details">Bank Account
-                                        Details</label>
-                                    {{form.bank_account_details}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="id_ifsc_code">Bank IFSC Code</label>
-                                    {{form.ifsc_code}}
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -193,23 +175,23 @@ Add Client
 </div>
 
 
+
 {% endblock page_content %}
+
 
 {% block custom_js %}
 <script>
-    document.getElementById('id_name').classList.add('form-control');
-    document.getElementById('id_email').classList.add('form-control');
-    document.getElementById('id_phone').classList.add('form-control');
-    document.getElementById('id_local_address').classList.add('form-control');
-    document.getElementById('id_local_city').classList.add('form-control');
-    document.getElementById('id_local_country').classList.add('form-control');
-    document.getElementById('id_native_address').classList.add('form-control');
-    document.getElementById('id_native_city').classList.add('form-control');
-    document.getElementById('id_native_country').classList.add('form-control');
-    document.getElementById('id_bank_name').classList.add('form-control');
-    document.getElementById('id_branch_name').classList.add('form-control');
-    document.getElementById('id_bank_account_details').classList.add('form-control');
-    document.getElementById('id_ifsc_code').classList.add('form-control');
+    document.getElementById('id_unit_name').classList.add('form-control');
+    document.getElementById('id_landlord').classList.add('form-control');
+    document.getElementById('id_q1').classList.add('form-control');
+    document.getElementById('id_q2').classList.add('form-control');
+    document.getElementById('id_q3').classList.add('form-control');
+    document.getElementById('id_q4').classList.add('form-control');
+    document.getElementById('id_q5').classList.add('form-control');
+    document.getElementById('id_q6').classList.add('form-control');
+    document.getElementById('id_q7').classList.add('form-control');
+    document.getElementById('id_q8').classList.add('form-control');
+    document.getElementById('id_q9').classList.add('form-control');
 
 </script>
 {% endblock custom_js %}
