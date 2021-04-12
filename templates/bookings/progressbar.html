@@ -1,0 +1,229 @@
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+
+<style>
+    .progress_card {
+        z-index: 0;
+        background-color: #ECEFF1;
+        /* padding-bottom: 20px; */
+        /* margin-top: 90px; */
+        /* margin-bottom: 90px; */
+        border-radius: 10px
+    }
+
+    #progressbar {
+        overflow: hidden;
+        color: #455A64;
+        padding-left: 0px;
+    }
+
+    #progressbar li {
+        list-style-type: none;
+        font-size: 13px;
+        width: 14%;
+        float: left;
+        position: relative;
+        font-weight: 400
+    }
+
+    #progressbar .step0:before {
+        cursor: pointer;
+        font-family: FontAwesome;
+        /* for circle icon*/
+        content: "\f10c";
+        color: #fff
+    }
+
+    #progressbar li:before {
+        width: 40px;
+        height: 40px;
+        line-height: 45px;
+        display: block;
+        font-size: 20px;
+        background: #C5CAE9;
+        border-radius: 50%;
+        margin: auto;
+        padding: 0px
+    }
+
+    #progressbar li:after {
+        content: '';
+        width: 100%;
+        height: 12px;
+        background: #C5CAE9;
+        position: absolute;
+        left: 0;
+        top: 16px;
+        z-index: -1
+    }
+
+    #progressbar li:last-child:after {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: absolute;
+        left: -50%
+    }
+
+    #progressbar li:nth-child(2):after,
+    #progressbar li:nth-child(3):after,
+    #progressbar li:nth-child(4):after,
+    #progressbar li:nth-child(5):after,
+    #progressbar li:nth-child(6):after {
+        left: -50%
+    }
+
+    #progressbar li:first-child:after {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        position: absolute;
+        left: 50%
+    }
+
+    #progressbar li:last-child:after {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+
+    #progressbar li:first-child:after {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px
+    }
+
+    #progressbar li.active:before,
+    #progressbar li.active:after {
+        background: #651FFF
+    }
+
+    #progressbar li.active:before {
+        font-family: FontAwesome;
+        content: "\f00c"
+            /* for check icon*/
+    }
+</style>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type='text/javascript'
+    src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+<script type='text/javascript'></script>
+<!-- </head> -->
+
+<div class='snippet-body'>
+    <div class="container mx-auto">
+        <div class="card progress_card">
+
+            <div class="row d-flex justify-content-center align-contents-center">
+                <div class="col-12">
+                    <ul id="progressbar" class="text-center">
+                        <li class="active step0" id="status_1">lead</li>
+                        <li class="step0" id="status_2">confirmed</li>
+                        <li class="step0" id="status_3">mail sent</li>
+                        <li class="step0" id="status_4">document completed</li>
+                        <li class="step0" id="status_5">security email</li>
+                        <li class="step0" id="status_6">checked In</li>
+                        <li class="step0" id="status_7">checked Out</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // console.log('context: ', '{{reOrderLogic}}')
+    var bookinStatus = '{{booking.booking_status}}';
+
+    updateBookingStatus(bookinStatus);
+
+
+    function updateBookingStatus(status) {
+        if (status === 'status_1') {
+            document.getElementById('status_2').classList.remove('active');
+            document.getElementById('status_3').classList.remove('active');
+            document.getElementById('status_4').classList.remove('active');
+            document.getElementById('status_5').classList.remove('active');
+            document.getElementById('status_6').classList.remove('active');
+            document.getElementById('status_7').classList.remove('active');
+        } else if (status === 'status_2') {
+            document.getElementById('status_2').classList.add('active');
+            document.getElementById('status_3').classList.remove('active');
+            document.getElementById('status_4').classList.remove('active');
+            document.getElementById('status_5').classList.remove('active');
+            document.getElementById('status_6').classList.remove('active');
+            document.getElementById('status_7').classList.remove('active');
+        } else if (status === 'status_3') {
+            document.getElementById('status_2').classList.add('active');
+            document.getElementById('status_3').classList.add('active');
+            document.getElementById('status_4').classList.remove('active');
+            document.getElementById('status_5').classList.remove('active');
+            document.getElementById('status_6').classList.remove('active');
+            document.getElementById('status_7').classList.remove('active');
+        } else if (status === 'status_4') {
+            document.getElementById('status_2').classList.add('active');
+            document.getElementById('status_3').classList.add('active');
+            document.getElementById('status_4').classList.add('active');
+            document.getElementById('status_5').classList.remove('active');
+            document.getElementById('status_6').classList.remove('active');
+            document.getElementById('status_7').classList.remove('active');
+        } else if (status === 'status_5') {
+            document.getElementById('status_2').classList.add('active');
+            document.getElementById('status_3').classList.add('active');
+            document.getElementById('status_4').classList.add('active');
+            document.getElementById('status_5').classList.add('active');
+            document.getElementById('status_6').classList.remove('active');
+            document.getElementById('status_7').classList.remove('active');
+        } else if (status === 'status_6') {
+            document.getElementById('status_2').classList.add('active');
+            document.getElementById('status_3').classList.add('active');
+            document.getElementById('status_4').classList.add('active');
+            document.getElementById('status_5').classList.add('active');
+            document.getElementById('status_6').classList.add('active');
+            document.getElementById('status_7').classList.remove('active');
+        } else if (status === 'status_7') {
+            document.getElementById('status_2').classList.add('active');
+            document.getElementById('status_3').classList.add('active');
+            document.getElementById('status_4').classList.add('active');
+            document.getElementById('status_5').classList.add('active');
+            document.getElementById('status_6').classList.add('active');
+            document.getElementById('status_7').classList.add('active');
+        }
+    }
+
+
+
+    $('.step0').on('click', function (e) {
+        let bookin_status = this.id;
+        updateBookingStatus(bookin_status);
+
+        // console.log('statusBeforeShuffle: ', statusBeforeShuffle);
+        // console.log('statusAfterShuffle: ', statusAfterShuffle);
+
+        // const url = '/update_booking_status/';
+        // fetch(url, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": 'application/json',
+        //         'X-CSRFToken': '{{ csrf_token }}'
+        //     },
+        //     body: JSON.stringify({
+        //         "candidateId": candidateId,
+        //         "resumeVsJobId": resumeVsJobId,
+        //         "statusBeforeShuffle": statusBeforeShuffle,
+        //         "statusAfterShuffle": statusAfterShuffle,
+        //     })
+        // }).then(response => {
+        //     // console.log('response: ', response);
+        //     let jsonRes = response.json();
+        //     if (response.status >= 200 && response.status < 300) {
+        //         // console.log('json response: ', jsonRes)
+        //         return jsonRes;
+        //     } else {
+        //         return json.then("Error: ", Promise.reject.bind(Promise));
+        //     }
+        // }).then(data => {
+        //     // console.log('data: ', data);
+        //     updateBookingStatus(statusAfterShuffle);
+        //     statusBeforeShuffle = statusAfterShuffle;
+        // }).catch((error) => {
+        //     console.log(error);
+        // });
+    })
+
+</script>
