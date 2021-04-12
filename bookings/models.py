@@ -117,8 +117,8 @@ class BookingNote(models.Model):
 
 
 class ReOrderStringLogic(models.Model):
-    booking = models.OneToOneField(
-        Booking, on_delete=models.CASCADE, null=True)
+    company = models.OneToOneField(
+        UserCompany, on_delete=models.CASCADE, null=True)
     lead = models.TextField(blank=True)
     confirmed = models.TextField(blank=True)
     welcome_mail_sent = models.TextField(blank=True)
@@ -130,4 +130,4 @@ class ReOrderStringLogic(models.Model):
     date_updated = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return self.booking.unit.unit_name + '-' + str(self.id) + '-order-logic'
+        return self.company.company_name + '-' + str(self.id) + '-order-logic'

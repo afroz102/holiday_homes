@@ -4,7 +4,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from users.models import UserProfile
 from bookings.forms import AddBookingForm, AddGuestForm, UpdateBookingForm
-from bookings.models import Booking, BookingNote, Guest, MainGuestBookingMapping
+from bookings.models import Booking, BookingNote, Guest, MainGuestBookingMapping, ReOrderStringLogic
 
 
 @login_required(login_url='login')
@@ -52,6 +52,17 @@ def addBooking(request):
                 main_guest=newMainGuestObj,
                 added_by=user
             )
+            # Saving Reorder String
+            bookingReorderLogic, create = ReOrderStringLogic.objects.get_or_create(
+                company=company)
+
+            bookingReorderLogic.lead = str(newBookingObj.id)
+            bookingReorderLogic.save()
+            # if shortlistedOrder is None or shortlistedOrder == '':
+            #     jobReorderLogic.shortlisted = str(resumeId)
+            # else:
+            #     jobReorderLogic.shortlisted = shortlistedOrder + \
+            #         ',' + str(resumeId)
 
             return redirect('get_all_booking')
         else:
