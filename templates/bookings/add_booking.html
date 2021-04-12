@@ -1,0 +1,276 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+<title>Booking</title>
+{% endblock title %}
+
+
+{% block breadcrumb_heading %}
+Add Booking
+{% endblock breadcrumb_heading %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="#">Add Booking</a>
+</li>
+{% endblock breadcrumb %}
+
+
+{% block page_content %}
+
+<div class="row mb-4">
+    <div class="col">
+        <button data-toggle="modal" data-target="#bulk_upload_client"
+            class="btn btn-rounded btn-outline-success float-right mx-2">
+            <i class="mdi mdi-file"></i> BULK UPLOAD
+        </button>
+    </div>
+
+    <!--Bulk upload client button modal content -->
+    <div id="bulk_upload_client" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title font-weight-bold" id="vcenter">
+                        Bulk Upload your client</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body pt-0">
+
+                    <div class="card mb-0">
+                        <div class="card-body my-0 pb-0">
+                            <h4 class="card-title text-muted mt-0 pt-0">Import your File (Accepted .CSV format only)
+                            </h4>
+                            <form action="{#% url 'bulk_client_file_upload' %}" enctype="multipart/form-data"
+                                method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="file" name="csv_client_file" id="csv_client_file"
+                                        accept="text/plain, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        class="form-control-file">
+                                    <span class="badge badge-default badge-success form-text text-white float-left"
+                                        id="download_sample_csv">Download Sample</span>
+                                </div>
+
+                                <div class="modal-footer mt-4">
+                                    <button type="button" class="btn btn-warning waves-effect float-left"
+                                        data-dismiss="modal">Cancel</button>
+                                    <button type="submit"
+                                        class="btn btn-success waves-effect float-right">Upload</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.modal content -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h4 class="mb-0 text-white">New Booking and Guest Info</h4>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title mb-0 text-center">Booking Info</h4>
+                </div>
+
+                <div class="form-body">
+                    <div class="card-body bg-light">
+                        <div class="row pt-3 m-2">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_unit">Unit Name</label>
+                                    {{bookingForm.unit}}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_booking_source">Booking Source</label>
+                                    {{bookingForm.booking_source}}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_no_of_guest">No Of Guest</label>
+                                    {{bookingForm.no_of_guest}}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_checkin_date">Checkin Date</label>
+                                    {{bookingForm.checkin_date}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_checkin_time">Checkin Time</label>
+                                    {{bookingForm.checkin_time}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_checkout_date">Checkout Date</label>
+                                    {{bookingForm.checkout_date}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_checkout_time">Checkout Time</label>
+                                    {{bookingForm.checkout_time}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_booking_status">Booking Status</label>
+                                    {{bookingForm.booking_status}}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <h4 class="card-title mb-0 text-center">Main Guest Info</h4>
+                </div>
+                <div class="form-body">
+                    <div class="card-body bg-light">
+                        <div class="row pt-3">
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_name">Name</label>
+                                    {{guestForm.name}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_email">Email</label>
+                                    {{guestForm.email}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_phone">Phone</label>
+                                    {{guestForm.phone}}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_address">Address</label>
+                                    {{bookingForm.address}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_city">City</label>
+                                    {{bookingForm.city}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_country">Country</label>
+                                    {{bookingForm.country}}
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_age">Age</label>
+                                    {{guestForm.age}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_gender">Gender</label>
+                                    {{guestForm.gender}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_document_type">Document Type</label>
+                                    {{guestForm.document_type}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_file_one">File 1</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="file_one" accept="image/*" id="id_file_one"
+                                            class="custom-file-input">
+                                        <label class="custom-file-label form-control" for="id_file_one"
+                                            aria-describedby="id_file_one">Choose</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_file_two">File 2</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="file_two" accept="image/*" id="id_file_two"
+                                            class="custom-file-input">
+                                        <label class="custom-file-label form-control" for="id_file_two"
+                                            aria-describedby="id_file_two">Choose</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-success mx-4 mb-4 float-right">
+                            <i class="fa fa-check"></i> SAVE
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock page_content %}
+
+{% block custom_js %}
+<script>
+
+</script>
+
+{% endblock custom_js %}

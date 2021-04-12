@@ -17,6 +17,17 @@ Bookings
 {% endblock breadcrumb %}
 
 
+{% block custom_css %}
+<!-- Latest Sortable -->
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<style>
+    .ghost {
+        opacity: .5;
+        background-color: lightblue;
+    }
+</style>
+{% endblock custom_css %}
+
 
 {% block page_content %}
 
@@ -80,13 +91,13 @@ Bookings
 <!-- Row -->
 <div class="row">
 
-    {% for booking in bookings %}
+    {% for item in bookings %}
     <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="card bg-inverse py-2 px-4 rounded">
             <div class="d-flex flex-row">
                 <div class="text-white align-self-center p-2">
-                    <h3 class="mb-0">{{booking.name}}</h3>
-                    <p>{{booking.local_city}}</p>
+                    <h3 class="mb-0">{{item.main_guest.name}}</h3>
+                    <p>{{item.booking.unit.unit_name}}</p>
                 </div>
                 <div class="p-2 ml-auto">
                     <h3 class="text-white box mb-0">
@@ -95,7 +106,7 @@ Bookings
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <a href="{% url 'booking_details' booking.id %}"
+                <a href="{% url 'booking_details' item.booking.id %}"
                     class="btn btn-sm btn-rounded waves-effect waves-light mt-3 btn-outline-success">View
                     Details</a>
             </div>
@@ -105,4 +116,213 @@ Bookings
 
 </div>
 
+
+
+
+
+
+<div class="row">
+    <div class="col w-100">
+        <div class="card overflow-auto">
+            <div class="card-body">
+                <div class="row flex-nowrap">
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">Lead</h5>
+                            <div class="card-body rounded px-0" id="stage_1">
+
+                                {% for item in columnOrder.shortlisted %}
+                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
+                                    <div class="card-body w-100">
+                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
+                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">Confirmed</h5>
+                            <div class="card-body" id="stage_2">
+
+                                {% for item in columnOrder.approved %}
+                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
+                                    <div class="card-body">
+                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
+                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">Welcome Mail Sent</h5>
+                            <div class="card-body" id="stage_3">
+
+                                {% for item in columnOrder.scheduled %}
+                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
+                                    <div class="card-body">
+                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
+                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">Document Completed</h5>
+                            <div class="card-body" id="stage_4">
+
+                                {% for item in columnOrder.selected %}
+                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
+                                    <div class="card-body">
+                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
+                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">Security Email</h5>
+                            <div class="card-body" id="stage_5">
+
+                                {% for item in columnOrder.joined %}
+                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
+                                    <div class="card-body">
+                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
+                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">Checked In</h5>
+                            <div class="card-body" id="stage_6">
+
+
+                                {% for item in columnOrder.rejected %}
+                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
+                                    <div class="card-body">
+                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
+                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock page_content %}
+
+{% block custom_js %}
+<script>
+    //Sending get request with id to upload resume 
+    var sortebleId1 = document.getElementById('shortlisted');
+    var sortebleId2 = document.getElementById('approved');
+    var sortebleId3 = document.getElementById('scheduled');
+    var sortebleId4 = document.getElementById('selected');
+    var sortebleId5 = document.getElementById('joined');
+    var sortebleId6 = document.getElementById('rejected');
+
+    const arrElemId = [sortebleId1, sortebleId2, sortebleId3, sortebleId4, sortebleId5, sortebleId6];
+
+    function generateStrVal(childObj) {
+        var strVal = '';
+        var arr = [];
+        for (var i = 0; i < childObj.length; i++) {
+            arr.push(childObj[i].id);
+        }
+        return arr.join(',');
+    }
+
+
+    for (let i = 0; i < 6; i++) {
+        Sortable.create(arrElemId[i], {
+            group: 'shared',
+            ghostClass: 'ghost',
+            animation: 150,
+
+            // Element dragging ended
+            onEnd: function (event) {
+                var itemElem = event.item;
+                // dragged HTMLElement
+                // console.log("event.to: ", event.to.id);    // target list
+                // console.log("event.from: ", event.from.id);  // previous list
+                // console.log("event.oldIndex: ", event.oldIndex);  // element's old index within old parent
+                // console.log("event.newIndex: ", event.newIndex);  // element's new index within new parent
+                // console.log("event.oldDraggableIndex: ", event.oldDraggableIndex); // element's old index within old parent, only counting draggable elements
+                // console.log("event.newDraggableIndex: ", event.newDraggableIndex); // element's new index within new parent, only counting draggable elements
+
+
+                var movedFrom = event.from.id;
+                var movedTo = event.to.id;
+                var resumeId = event.item.id;
+
+                var strObj = {
+                    "movedFrom": generateStrVal(event.from.children),
+                    "movedTo": generateStrVal(event.to.children),
+                };
+                // console.log('strObj: ', strObj);
+
+                const url = '/update_application_status/';
+
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        "resumeId": resumeId,
+                        "jobId": "{{job.id}}",
+                        "prevStatus": movedFrom,
+                        "updatedStatus": movedTo,
+                        "strObj": strObj,
+                    }),
+                }).then(response => {
+                    // console.log('Response: ', Response);
+                    return response.json();
+                }).then(data => {
+                    // console.log('data: ', data);
+                });
+            },
+        });
+    }
+</script>
+{% endblock custom_js %}
