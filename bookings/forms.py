@@ -7,8 +7,8 @@ class AddBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ['company', 'date_created', 'is_deleted'
-                   'date_updated', 'added_by']
+        exclude = ['company', 'date_created',
+                   'is_deleted', 'date_updated', 'added_by']
 
         widgets = {
             'unit': forms.Select(attrs={
@@ -82,7 +82,7 @@ class AddGuestForm(forms.ModelForm):
     class Meta:
         model = Guest
         fields = '__all__'
-        exclude = ['booking', 'date_created', 'is_deleted'
+        exclude = ['booking', 'date_created', 'is_deleted',
                    'date_updated', 'added_by']
         widgets = {
             'name': forms.TextInput(attrs={
@@ -122,8 +122,8 @@ class UpdateBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ['company', 'date_created', 'is_deleted'
-                   'date_updated', 'added_by']
+        exclude = ['company', 'added_by',
+                   'date_created', 'date_updated', 'is_deleted']
         widgets = {
             'unit': forms.Select(attrs={
                 'type': 'text',
@@ -187,11 +187,4 @@ class UpdateBookingForm(forms.ModelForm):
     def __init__(self, *args, ** kwargs):
         super(UpdateBookingForm, self).__init__(*args, **kwargs)
         self.fields['unit'].disabled = True
-
-
-# class UpdateGuestForm(forms.ModelForm):
-#     class Meta:
-#         model = Guest
-#         fields = '__all__'
-#         exclude = ['booking', 'date_created', 'is_deleted'
-#                    'date_updated', 'added_by']
+        self.fields['booking_status'].disabled = True

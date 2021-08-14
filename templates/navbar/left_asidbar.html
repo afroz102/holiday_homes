@@ -91,14 +91,14 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark" href="{#% url 'get_all_internaluser' %}"
+                            <a class="sidebar-link waves-effect waves-dark" href="{% url 'get_all_task' %}"
                                 aria-expanded="false">
                                 <i class="fas fa-tasks"></i>
                                 <span class="hide-menu">Tasks</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="javascript:void(0)" class="sidebar-link">
+                            <a href="{% url 'add_task' %}" class="sidebar-link">
                                 <i class="far fa-plus-square"></i>
                                 <span class="hide-menu">Add a New Task</span>
                             </a>

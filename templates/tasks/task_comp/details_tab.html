@@ -1,0 +1,233 @@
+{% load static %}
+<div class="tab-pane fade show active" id="task_details-tab" role="tabpanel" aria-labelledby="pills-task_details-tab">
+    <div class="card-body">
+        <center>
+            <h2 class="card-title">
+                Title:
+                <!-- <a href="{#% url 'unit_details' booking.unit.id  %}"> -->
+                <!-- </a> -->
+                <span class="text-muted ml-2"> {{task.task_title}}
+                    <i class="fas fa-external-link-square-alt"></i>
+                </span>
+            </h2>
+
+            <h6 class="mt-1">
+                <b>Lead Manager:</b>
+                <span class="text-muted ml-2"> {{lead_manager.assigned_to.full_name}}</span>
+            </h6>
+        </center>
+
+        <div>
+            <hr>
+        </div>
+
+        <div class="row  text-center">
+            <div class="col-md-12 col-xs-12 b-r mb-4">
+                <span class="mr-4">Task Status: </span>
+                <h4 class="d-inline">
+                    {% if task.task_status == "status_1" %}
+                    <span class="badge badge-warning">{{task.get_task_status_display}}</span>
+                    {% elif task.task_status == 'status_2' %}
+                    <span class="badge badge-primary">{{task.get_task_status_display}}</span>
+                    {% elif task.task_status == 'status_3' %}
+                    <span class="badge badge-success">{{task.get_task_status_display}}</span>
+                    {% else %}
+                    <span class="badge badge-danger">{{task.get_task_status_display}}</span>
+                    {% endif %}
+                </h4>
+            </div>
+            <div class="col-md-12 col-xs-12 b-r">
+                <strong>Description</strong>
+                <br>
+                <p class="text-muted">
+                    {{task.task_details}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer px-0">
+        <div class="row">
+            <div class="col-lg col-md d-flex justify-content-center">
+                <button class="btn btn-rounded btn-outline-warning" data-toggle="modal"
+                    data-target="#update_task_details">
+                    <i class="fas fa-edit mr-1"></i>Update Details
+                </button>
+            </div>
+
+            <!-- <div class="col-lg col-md d-flex justify-content-center">
+                <button class="btn btn-rounded btn-outline-danger" data-toggle="modal"
+                    data-target="#cancel_task_details">
+                    <i class="mdi mdi-delete-forever mr-1"></i>Cancel Task
+                </button>
+            </div> -->
+
+            <div class="col-lg col-md d-flex justify-content-center">
+                <button class="btn btn-rounded btn-outline-success" data-toggle="modal"
+                    data-target="#update_task_status">
+                    <i class="fas fa-edit mr-1"></i>Update Task Status
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Booking Completed button modal content -->
+<div id="update_task_status" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center bg-primary">
+                <h3 class="modal-title font-weight-bold text-white" id="vcenter">
+                    Update Booking Status!!</h3>
+                <button type="button" class="close text-warning" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            <form action="{% url 'update_tasks_status' task.id %}" method="post">
+                {% csrf_token %}
+
+                <div class="modal-body">
+                    <div class="form-group col-sm-12">
+                        <label for="id_task_status" class="col-md-12">Update Task Status</label>
+                        <div class="col-sm-12">
+                            {{updateTaskStatusForm.task_status}}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning waves-effect float-left"
+                        data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success waves-effect float-right">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.modal content -->
+
+<!-- Cancel Booking button modal content -->
+<!-- <div id="cancel_task_details" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3 class="modal-title font-weight-bold" id="vcenter" style="color: rgb(207, 33, 33);">
+                    Warning!!</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure, you want to Cancel this Booking?</p>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-warning waves-effect float-left"
+                    data-dismiss="modal">Cancel</button>
+
+                <form action="{#% url 'cancel_booking' booking.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger waves-effect float-right">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- /.modal content -->
+
+
+
+
+<!-- Update Booking Details button modal content -->
+<div id="update_task_details" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="vcenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h3 class="modal-title font-weight-bold text-center" id="vcenter">Update Booking Details</h3>
+                <button type="button" class="close text-warning" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal form-material">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="id_unit" class="col-md-12">Unit</label>
+                            <div class="col-md-12">
+                                {% if form.unit %}
+                                {{form.unit}}
+                                {% else %}
+                                <input type="text" class="form-control" value="None">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="id_booking" class="col-md-12">Booking</label>
+                            <div class="col-md-12">
+                                {% if form.booking %}
+                                {{form.booking}}
+                                {% else %}
+                                <input type="text" class="form-control" value="None">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="id_unit" class="col-md-12">Task Title</label>
+                            <div class="col-md-12">
+                                {{form.task_title}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="id_task_status" class="col-md-12">Task Status</label>
+                            <div class="col-md-12">
+                                {{form.task_status}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <label for="id_booking_source" class="col-md-12">Task Description</label>
+                            <div class="col-md-12">
+                                {{form.task_details}}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="id_task_date" class="col-md-12">Task Date</label>
+                            <div class="col-md-12">
+                                {{form.task_date}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="id_task_time" class="col-md-12">Task Time</label>
+                            <div class="col-md-12">
+                                {{form.task_time}}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- footer submit button -->
+                    <div class="mt-2 form-group d-flex justify-content-around text-center">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-warning waves-effect"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-success waves-effect">
+                                <i class="mdi mdi-account-edit"></i>
+                                <span> Update</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal content -->

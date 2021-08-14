@@ -1,0 +1,197 @@
+{% load static %}
+<div class="tab-pane fade" id="task_manager-tab" role="tabpanel" aria-labelledby="pills-task_manager-tab">
+    <div class="card-body">
+
+        <!-- Add button -->
+        <div class="row mb-4 mr-2">
+            <div class="col-lg col-md">
+                <button class="btn btn-sm btn-rounded waves-effect waves-light mt-3 btn-outline-success float-right"
+                    data-toggle="modal" data-target="#responsive-modal_add_task_manager">
+                    <i class="mdi mdi-account-plus"></i> Add a Task Manager
+                </button>
+            </div>
+        </div>
+
+        <div class="row w-100">
+            <div class="card w-100">
+                <div class="card-body px-1">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-info">
+                            <thead class="bg-info text-white">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th class="text-center">Remove from Task</th>
+                                    <th class="text-center">Is Lead Manager</th>
+                                </tr>
+                            </thead>
+                            {% for item in taskManagers %}
+                            <tbody>
+                                <tr>
+                                    <td>{{item.assigned_to.full_name}}</td>
+                                    <td>{{item.assigned_to.user.email}}</td>
+                                    <td>{{item.assigned_to.phone}}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <div class="mx-2">
+                                            <a type="button" class="text-danger font-weight-bold" data-toggle="modal"
+                                                data-target="#verticalcenter_delete_task_manager_{{item.id}}">
+                                                <i class="mdi mdi-delete-forever"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        {% if item.is_lead_manager %}
+                                        <span class="badge badge-success p-2" data-toggle="modal"
+                                            data-target="#update_task_manager_{{item.id}}"
+                                            style="cursor: pointer;">YES</span>
+                                        {% else %}
+                                        <span class="badge badge-danger p-2" data-toggle="modal"
+                                            data-target="#update_task_manager_{{item.id}}"
+                                            style="cursor: pointer;">NO</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <!--Change Lead Task Manager button modal content -->
+                            <div id="update_task_manager_{{item.id}}" class="modal" tabindex="-1" role="dialog"
+                                aria-labelledby="vcenter" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center bg-primary">
+                                            <h3 class="modal-title font-weight-bold text-white" id="vcenter">
+                                                Update Task Manager Status</h3>
+                                            <button type="button" class="close text-warning" data-dismiss="modal"
+                                                aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{% url 'update_task_manager_status' item.id %}" method="post">
+                                                {% csrf_token %}
+                                                <div class="row mb-4">
+                                                    <div class="form-group col-sm-12">
+                                                        <div class="col-md-12">
+                                                            <label for="id_is_lead_manager_{{item.id}}"
+                                                                class="mr-2">Update this Assigned User's Status</label>
+
+                                                            {% if item.is_lead_manager %}
+                                                            <input type="checkbox" name="is_lead_manager"
+                                                                id="id_is_lead_manager_{{item.id}}" checked>
+                                                            {% else %}
+                                                            <input type="checkbox" name="is_lead_manager"
+                                                                id="id_is_lead_manager_{{item.id}}">
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="form-group d-flex justify-content-around text-center">
+                                                    <div class="col-sm-6">
+                                                        <button type="button" class="btn btn-warning waves-effect"
+                                                            data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button class="btn btn-success waves-effect">
+                                                            <i class="mdi mdi-account-edit"></i>
+                                                            <span> Update </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.modal content -->
+
+                            <!-- Remove Task Manager button modal content -->
+                            <div id="verticalcenter_delete_task_manager_{{item.id}}" class="modal" tabindex="-1"
+                                role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                            <h3 class="modal-title font-weight-bold" id="vcenter"
+                                                style="color: rgb(207, 33, 33);">
+                                                Warning!!</h3>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p> Are you sure, you want to remove this manager from The Task?</p>
+                                        </div>
+
+                                        <div class="modal-footer">
+
+                                            <button type="button" class="btn btn-warning waves-effect float-left"
+                                                data-dismiss="modal">Cancel</button>
+                                            <form action="{% url 'remove_task_manager' item.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit"
+                                                    class="btn btn-danger waves-effect float-right">Confirm</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.modal content -->
+
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Add Guest button modal content -->
+<div id="responsive-modal_add_task_manager" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center bg-dark text-white">
+                <h3 class="modal-title font-weight-bold" id="vcenter"> Add a New Task Manager</h3>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            <div class="modal-body">
+                <form action="{% url 'add_task_manager' task.id %}" method="post" class="form-horizontal form-material"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row mb-4">
+                        <div class="form-group col-sm-12">
+                            <label for="id_assigned_to" class="col-md-12">Assigned To</label>
+                            <div class="col-md-12">
+                                {{addTaskManagerForm.assigned_to}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- footer submit button -->
+                    <div class="form-group d-flex justify-content-around text-center">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-warning waves-effect"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-success waves-effect">
+                                <i class="mdi mdi-content-save"></i>
+                                <span> Submit </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.modal content -->

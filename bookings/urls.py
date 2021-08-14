@@ -7,8 +7,10 @@ urlpatterns = [
 
     path('booking/<int:booking_id>/', views.getBookingDetails,
          name="booking_details"),
-    # path('delete_booking/<int:booking_id>/', views.deleteBooking,
-    #      name="delete_booking"),
+    path('cancel_booking/<int:booking_id>/', views.cancelBooking,
+         name="cancel_booking"),
+    path('booking_completed/<int:booking_id>/', views.bookingCompleted,
+         name="booking_completed"),
 
     # guest Add/Update/Delete
     path('add_guest/<int:booking_id>/', views.addGuest,

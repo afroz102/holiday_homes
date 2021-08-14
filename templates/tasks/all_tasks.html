@@ -1,0 +1,252 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+<title>Tasks</title>
+{% endblock title %}
+
+
+{% block breadcrumb_heading %}
+Tasks
+{% endblock breadcrumb_heading %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="#">Tasks</a>
+</li>
+{% endblock breadcrumb %}
+
+
+{% block custom_css %}
+<!-- Latest Sortable -->
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<style>
+    .ghost {
+        opacity: .5;
+        background-color: lightblue;
+    }
+</style>
+{% endblock custom_css %}
+
+
+{% block page_content %}
+
+<div class="row mb-4">
+    <div class="col-lg col-md">
+        <a class="btn btn-rounded btn-outline-success float-right mx-2" href="{% url 'add_task' %}">
+            <i class="mdi mdi-account-plus"></i> Add a new Task
+        </a>
+    </div>
+</div>
+
+<!-- Row -->
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="bg-secondary text-dark">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Task Lead</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in tasks %}
+                    <tr>
+                        <th scope="row">
+                            {% if item.task_title %}
+                            <a href="{% url 'task_details' item.id %}">
+                                {{item.task_title}}
+                            </a>
+                            {% else %}
+                            Hello
+                            {% endif %}
+                        </th>
+
+                        <td>{{item.task_date}}, {{item.task_time}}</td>
+                        <td>{{item.get_task_status_display}}</td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- <div class="row">
+    <div class="col w-100">
+        <div class="card overflow-auto">
+            <div class="card-body">
+                <div class="row flex-nowrap">
+
+                    <div class="col">
+                        <div class="card" style="width: 15rem;">
+                            <h5 class="card-header text-center">PENDING</h5>
+                            <div class="card-body rounded px-0" id="status_1">
+
+                                {% for item in columnOrder.status_1 %}
+                                <div class="card bg-inverse rounded" id="{{item.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'task_details' item.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
+                                        </a>
+                                        <p class="text-white mb-0">{{item.unit.unit_name}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">IN PROGRESS</h5>
+                            <div class="card-body" id="status_2">
+
+                                {% for item in columnOrder.status_2 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'task_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
+                                        </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">COMPLETED</h5>
+                            <div class="card-body" id="status_3">
+
+                                {% for item in columnOrder.status_3 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'task_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
+                                        </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">CANCELED</h5>
+                            <div class="card-body" id="status_4">
+
+                                {% for item in columnOrder.status_4 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'task_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
+                                        </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+{% endblock page_content %}
+
+{% block custom_js %}
+<!-- <script>
+    //Sending get request with id to upload resume 
+    var sortebleId1 = document.getElementById('status_1');
+    var sortebleId2 = document.getElementById('status_2');
+    var sortebleId3 = document.getElementById('status_3');
+    var sortebleId4 = document.getElementById('status_4');
+
+    const arrElemId = [sortebleId1, sortebleId2, sortebleId3, sortebleId4];
+
+    function generateStrVal(childObj) {
+        var strVal = '';
+        var arr = [];
+        for (var i = 0; i < childObj.length; i++) {
+            arr.push(childObj[i].id);
+        }
+        return arr.join(',');
+    }
+
+
+    for (let i = 0; i < arrElemId.length; i++) {
+        Sortable.create(arrElemId[i], {
+            group: 'shared',
+            ghostClass: 'ghost',
+            animation: 150,
+
+            // Element dragging ended
+            onEnd: function (event) {
+                var itemElem = event.item;
+                // dragged HTMLElement
+                // console.log("target list: ", event.to.id);    // target list
+                // console.log("previous list: ", event.from.id);  // previous list
+                // console.log("element's old index within old parent: ", event.oldIndex);  // element's old index within old parent
+                // console.log("element's new index within new parent: ", event.newIndex);  // element's new index within new parent
+                // console.log("event.oldDraggableIndex: ", event.oldDraggableIndex); // element's old index within old parent, only counting draggable elements
+                // console.log("event.newDraggableIndex: ", event.newDraggableIndex); // element's new index within new parent, only counting draggable elements
+
+
+                var prevStatus = event.from.id;
+                var updatedStatus = event.to.id;
+                var taskId = event.item.id;
+                // console.log(`prevStatus: `, prevStatus);
+                // console.log(`updatedStatus: `, updatedStatus);
+                // console.log(`bookingId: `, bookingId);
+
+                var strObj = {
+                    "movedFrom": generateStrVal(event.from.children),
+                    "movedTo": generateStrVal(event.to.children),
+                };
+                // console.log('strObj: ', strObj);
+
+                const url = '/update_task_status/';
+
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        "bookingId": bookingId,
+                        "prevStatus": prevStatus,
+                        "updatedStatus": updatedStatus,
+                        "strObj": strObj,
+                    }),
+                }).then(response => {
+                    console.log('Response: ', Response);
+                    return response.json();
+                }).then(data => {
+                    console.log('data: ', data);
+                });
+            },
+        });
+    }
+</script> -->
+{% endblock custom_js %}

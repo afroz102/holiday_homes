@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>Booking</title>
+<title>Task Details</title>
 {% endblock title %}
 
 
@@ -12,14 +12,13 @@ Booking
 
 {% block breadcrumb %}
 <li class="breadcrumb-item">
-    <a href="/bookings/">Bookings</a>
+    <a href="/tasks/">Task Details</a>
 </li>
 {% endblock breadcrumb %}
 
 {% block page_content %}
 
 
-{% include 'bookings/progressbar.html' %}
 
 <div class="row mt-5">
     <div class="col-md-12 col-lg-10 col-xlg-8 mx-auto">
@@ -27,20 +26,19 @@ Booking
             <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
 
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-booking_details-tab" data-toggle="pill"
-                        href="#booking_details-tab" role="tab" aria-controls="pills-booking_details"
-                        aria-selected="false">
+                    <a class="nav-link active" id="pills-task_details-tab" data-toggle="pill" href="#task_details-tab"
+                        role="tab" aria-controls="pills-task_details" aria-selected="false">
                         <i class="mdi mdi-account-card-details"></i>
-                        <span>Booking Details</span>
+                        <span>Task Details</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link " id="pills-booking_guests-tab" data-toggle="pill" href="#booking_guests-tab"
-                        role="tab" aria-controls="pills-booking_guests" aria-selected="true">
+                    <a class="nav-link " id="pills-task_manager-tab" data-toggle="pill" href="#task_manager-tab"
+                        role="tab" aria-controls="pills-task_manager" aria-selected="true">
                         <i class="mdi mdi-account-multiple"></i>
-                        <span>Guests</span>
+                        <span>Task Manager</span>
                     </a>
                 </li>
 
@@ -62,9 +60,8 @@ Booking
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-booking_details_log-tab" data-toggle="pill"
-                        href="#booking_details_log-tab" role="tab" aria-controls="pills-booking_details_log"
-                        aria-selected="false">
+                    <a class="nav-link" id="pills-task_details_log-tab" data-toggle="pill" href="#task_details_log-tab"
+                        role="tab" aria-controls="pills-task_details_log" aria-selected="false">
                         <i class="mdi mdi-account-card-details"></i>
                         <span>Log</span>
                     </a>
@@ -73,14 +70,14 @@ Booking
             <!-- Tabs -->
             <div class="tab-content" id="pills-tabContent">
 
-                <!-- Booking Profile Tab -->
-                {% include 'bookings/booking_comp/details_tab.html' %}
+                <!-- task Profile Tab -->
+                {% include 'tasks/task_comp/details_tab.html' %}
 
                 <!-- Booking Guests Tab -->
-                {% include 'bookings/booking_comp/guests_tab.html' %}
+                {% include 'tasks/task_comp/task_manager.html' %}
 
                 <!-- Booking Notes Tab -->
-                {% include 'bookings/booking_comp/notes_tab.html' %}
+                <!-- {#% include 'tasks/task_comp/notes_tab.html' %} -->
 
 
             </div>

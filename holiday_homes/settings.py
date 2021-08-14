@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'bookings',
     'home',
     'landlords',
+    'tasks',
     'units',
     'users',
 

@@ -1,0 +1,124 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+<title>Task</title>
+{% endblock title %}
+
+
+{% block breadcrumb_heading %}
+Add Task
+{% endblock breadcrumb_heading %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="#">Add Task</a>
+</li>
+{% endblock breadcrumb %}
+
+
+{% block page_content %}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h4 class="mb-0 text-white">Add New Task</h4>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title mb-0 text-center">Task Info</h4>
+                </div>
+
+                <div class="form-body">
+                    <div class="card-body bg-light">
+                        <div class="row pt-3 m-2">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_unit">Unit Name</label>
+                                    {{form.unit}}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_booking">Booking</label>
+                                    {{form.booking}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_task_status">Task Status</label>
+                                    {{form.task_status}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_task_details">Task Details</label>
+                                    {{form.task_details}}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_task_date">Task Date</label>
+                                    {{form.task_date}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_task_time">Task Time</label>
+                                    {{form.task_time}}
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_assigned_to">Assigned To</label>
+                                    {{form2.assigned_to}}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-actions">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-success mx-4 mb-4 float-right">
+                            <i class="fa fa-check"></i> SAVE
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock page_content %}
+
+{% block custom_js %}
+<script>
+    // var data = $('#id_unit').find(":selected").text();
+    // console.log(`data: `, data);
+    $('#id_unit').on('change', function () {
+        const unitId = this.value;
+        console.log(`unitId: `, unitId);
+        const url = `/add_tasks/?unit=${unitId}`;
+        window.location.href = url;
+    });
+</script>
+
+{% endblock custom_js %}

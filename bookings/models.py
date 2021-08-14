@@ -12,14 +12,13 @@ class Booking(models.Model):
     )
 
     STATUS = (
-        ('Lead', 'Lead'),
-        ('Confirmed', 'Confirmed'),
-        ('Welcome Mail Sent', 'Welcome Mail Sent'),
-        ('Document completed', 'Document completed'),
-        ('Security Email', 'Security Email'),
-        ('Checked In', 'Checked In'),
-        ('Checkedout', 'Checkedout'),
-        ('Cancelled', 'Cancelled'),
+        ('stage_1', 'Lead'),
+        ('stage_2', 'Confirmed'),
+        ('stage_3', 'Welcome Mail Sent'),
+        ('stage_4', 'Document completed'),
+        ('stage_5', 'Security Email'),
+        ('stage_6', 'Checked In'),
+        ('stage_7', 'Checkedout'),
     )
 
     company = models.ForeignKey(
@@ -42,15 +41,14 @@ class Booking(models.Model):
 
     added_by = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=True)
+    # is_canceled = models.BooleanField(default=False)
+    # is_completed = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_updated = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return 'booking-'+str(self.id)+'-'+self.unit.unit_name
-
-        # if not self.unit:
-        #     return str(self.id)
 
 
 class Guest(models.Model):
@@ -94,13 +92,15 @@ class MainGuestBookingMapping(models.Model):
         Booking, on_delete=models.CASCADE, null=True)
     main_guest = models.ForeignKey(Guest, on_delete=models.SET_NULL, null=True)
 
+    is_canceled = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
     added_by = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_updated = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return "Main Guest-" + str(self.id)+'-' + self.booking.unit.unit_name+'-' + str(self.booking.id)
+        return "MainGuest-" + self.main_guest.name+'-' + self.booking.unit.unit_name+'-' + str(self.booking.id)
 
 
 class BookingNote(models.Model):
@@ -119,12 +119,13 @@ class BookingNote(models.Model):
 class ReOrderStringLogic(models.Model):
     company = models.OneToOneField(
         UserCompany, on_delete=models.CASCADE, null=True)
-    lead = models.TextField(blank=True)
-    confirmed = models.TextField(blank=True)
-    welcome_mail_sent = models.TextField(blank=True)
-    document_completed = models.TextField(blank=True)
-    security_email = models.TextField(blank=True)
-    checked_in = models.TextField(blank=True)
+    stage_1 = models.TextField(blank=True)
+    stage_2 = models.TextField(blank=True)
+    stage_3 = models.TextField(blank=True)
+    stage_4 = models.TextField(blank=True)
+    stage_5 = models.TextField(blank=True)
+    stage_6 = models.TextField(blank=True)
+    stage_7 = models.TextField(blank=True)
 
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_updated = models.DateTimeField(auto_now=True, null=True)

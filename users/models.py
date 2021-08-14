@@ -23,7 +23,7 @@ class UserCompany(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(
-        User, unique=True, on_delete=models.CASCADE, null=True)
+        User, on_delete=models.CASCADE, null=True)
     company = models.ForeignKey(
         UserCompany, on_delete=models.CASCADE, null=True)
     phone = models.CharField(max_length=200,  blank=True)

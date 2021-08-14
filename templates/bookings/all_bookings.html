@@ -89,32 +89,22 @@ Bookings
 
 
 <!-- Row -->
-<div class="row">
+<!-- <div class="row">
 
     {% for item in bookings %}
     <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="card bg-inverse py-2 px-4 rounded">
             <div class="d-flex flex-row">
-                <div class="text-white align-self-center p-2">
+                <div class="text-white text-center ">
                     <h3 class="mb-0">{{item.main_guest.name}}</h3>
                     <p>{{item.booking.unit.unit_name}}</p>
                 </div>
-                <div class="p-2 ml-auto">
-                    <h3 class="text-white box mb-0">
-                        <i class="ti-themify-favicon-alt"></i>
-                    </h3>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center">
-                <a href="{% url 'booking_details' item.booking.id %}"
-                    class="btn btn-sm btn-rounded waves-effect waves-light mt-3 btn-outline-success">View
-                    Details</a>
             </div>
         </div>
     </div>
     {% endfor %}
 
-</div>
+</div> -->
 
 
 
@@ -128,16 +118,17 @@ Bookings
                 <div class="row flex-nowrap">
 
                     <div class="col">
-                        <div class="card mx-1" style="width: 15rem;">
+                        <div class="card" style="width: 15rem;">
                             <h5 class="card-header text-center">Lead</h5>
                             <div class="card-body rounded px-0" id="stage_1">
 
-                                {% for item in columnOrder.shortlisted %}
-                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
-                                    <div class="card-body w-100">
-                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
-                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                {% for item in columnOrder.stage_1 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'booking_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
                                         </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -151,12 +142,13 @@ Bookings
                             <h5 class="card-header text-center">Confirmed</h5>
                             <div class="card-body" id="stage_2">
 
-                                {% for item in columnOrder.approved %}
-                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
-                                    <div class="card-body">
-                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
-                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                {% for item in columnOrder.stage_2 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'booking_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
                                         </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -170,12 +162,13 @@ Bookings
                             <h5 class="card-header text-center">Welcome Mail Sent</h5>
                             <div class="card-body" id="stage_3">
 
-                                {% for item in columnOrder.scheduled %}
-                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
-                                    <div class="card-body">
-                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
-                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                {% for item in columnOrder.stage_3 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'booking_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
                                         </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -189,12 +182,13 @@ Bookings
                             <h5 class="card-header text-center">Document Completed</h5>
                             <div class="card-body" id="stage_4">
 
-                                {% for item in columnOrder.selected %}
-                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
-                                    <div class="card-body">
-                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
-                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                {% for item in columnOrder.stage_4 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'booking_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
                                         </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -208,12 +202,13 @@ Bookings
                             <h5 class="card-header text-center">Security Email</h5>
                             <div class="card-body" id="stage_5">
 
-                                {% for item in columnOrder.joined %}
-                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
-                                    <div class="card-body">
-                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
-                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                {% for item in columnOrder.stage_5 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'booking_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
                                         </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -228,12 +223,33 @@ Bookings
                             <div class="card-body" id="stage_6">
 
 
-                                {% for item in columnOrder.rejected %}
-                                <div class="card my-2 bg-secondary" id="{{item.resume.id}}">
-                                    <div class="card-body">
-                                        <a href="/candidate_profile/{{item.resume.id}}/{{job.id}}/">
-                                            <p class="card-text text-white">{{item.resume.name}}</p>
+                                {% for item in columnOrder.stage_6 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'booking_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
                                         </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mx-1" style="width: 15rem;">
+                            <h5 class="card-header text-center">Checked Out</h5>
+                            <div class="card-body" id="stage_7">
+
+
+                                {% for item in columnOrder.stage_7 %}
+                                <div class="card bg-inverse rounded" id="{{item.booking.id}}">
+                                    <div class="card-body w-100 text-center">
+                                        <a href="{% url 'booking_details' item.booking.id %}">
+                                            <h3 class="mb-0 text-white">{{item.main_guest.name}}</h3>
+                                        </a>
+                                        <p class="text-white mb-0">{{item.booking.unit.unit_name}}</p>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -253,14 +269,15 @@ Bookings
 {% block custom_js %}
 <script>
     //Sending get request with id to upload resume 
-    var sortebleId1 = document.getElementById('shortlisted');
-    var sortebleId2 = document.getElementById('approved');
-    var sortebleId3 = document.getElementById('scheduled');
-    var sortebleId4 = document.getElementById('selected');
-    var sortebleId5 = document.getElementById('joined');
-    var sortebleId6 = document.getElementById('rejected');
+    var sortebleId1 = document.getElementById('stage_1');
+    var sortebleId2 = document.getElementById('stage_2');
+    var sortebleId3 = document.getElementById('stage_3');
+    var sortebleId4 = document.getElementById('stage_4');
+    var sortebleId5 = document.getElementById('stage_5');
+    var sortebleId6 = document.getElementById('stage_6');
+    var sortebleId7 = document.getElementById('stage_7');
 
-    const arrElemId = [sortebleId1, sortebleId2, sortebleId3, sortebleId4, sortebleId5, sortebleId6];
+    const arrElemId = [sortebleId1, sortebleId2, sortebleId3, sortebleId4, sortebleId5, sortebleId6, sortebleId7];
 
     function generateStrVal(childObj) {
         var strVal = '';
@@ -272,7 +289,7 @@ Bookings
     }
 
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
         Sortable.create(arrElemId[i], {
             group: 'shared',
             ghostClass: 'ghost',
@@ -282,17 +299,20 @@ Bookings
             onEnd: function (event) {
                 var itemElem = event.item;
                 // dragged HTMLElement
-                // console.log("event.to: ", event.to.id);    // target list
-                // console.log("event.from: ", event.from.id);  // previous list
-                // console.log("event.oldIndex: ", event.oldIndex);  // element's old index within old parent
-                // console.log("event.newIndex: ", event.newIndex);  // element's new index within new parent
+                // console.log("target list: ", event.to.id);    // target list
+                // console.log("previous list: ", event.from.id);  // previous list
+                // console.log("element's old index within old parent: ", event.oldIndex);  // element's old index within old parent
+                // console.log("element's new index within new parent: ", event.newIndex);  // element's new index within new parent
                 // console.log("event.oldDraggableIndex: ", event.oldDraggableIndex); // element's old index within old parent, only counting draggable elements
                 // console.log("event.newDraggableIndex: ", event.newDraggableIndex); // element's new index within new parent, only counting draggable elements
 
 
-                var movedFrom = event.from.id;
-                var movedTo = event.to.id;
-                var resumeId = event.item.id;
+                var prevStatus = event.from.id;
+                var updatedStatus = event.to.id;
+                var bookingId = event.item.id;
+                // console.log(`prevStatus: `, prevStatus);
+                // console.log(`updatedStatus: `, updatedStatus);
+                // console.log(`bookingId: `, bookingId);
 
                 var strObj = {
                     "movedFrom": generateStrVal(event.from.children),
@@ -300,7 +320,7 @@ Bookings
                 };
                 // console.log('strObj: ', strObj);
 
-                const url = '/update_application_status/';
+                const url = '/update_booking_status/';
 
                 fetch(url, {
                     method: "POST",
@@ -309,10 +329,9 @@ Bookings
                         'X-CSRFToken': '{{ csrf_token }}'
                     },
                     body: JSON.stringify({
-                        "resumeId": resumeId,
-                        "jobId": "{{job.id}}",
-                        "prevStatus": movedFrom,
-                        "updatedStatus": movedTo,
+                        "bookingId": bookingId,
+                        "prevStatus": prevStatus,
+                        "updatedStatus": updatedStatus,
                         "strObj": strObj,
                     }),
                 }).then(response => {

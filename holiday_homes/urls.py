@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('bookings.urls')),
     path('', include('home.urls')),
     path('', include('landlords.urls')),
+    path('', include('tasks.urls')),
     path('', include('units.urls')),
     path('', include('users.urls')),
 
